@@ -4,33 +4,18 @@ pipeline {
     stages {
 
         stage("Restore Dependencies") {
-            when {
-                anyOf {
-                    branch 'main'
-                }
-            }
             steps {
                 bat 'dotnet restore'
             }
         }
 
         stage("Build Application") {
-            when {
-                anyOf {
-                    branch 'main'
-                }
-            }
             steps {
                 bat 'dotnet build --no-restore'
             }
         }
 
         stage("Run Tests") {
-            when {
-                anyOf {
-                    branch 'main'
-                }
-            }
             steps {
                 bat 'dotnet test --no-build --verbosity normal'
             }
